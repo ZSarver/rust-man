@@ -8,10 +8,13 @@ use sdl2::timer::get_ticks;
 mod sprite;
 mod assets;
 mod draw;
+mod player;
 
 use sprite::Sprite;
-use draw::Draw;
 use assets::P_SPEED;
+use player::Player;
+use player::PlayerStatus;
+use draw::Draw;
 
 fn main() {
   //initialize sdl
@@ -28,8 +31,9 @@ fn main() {
   let mut renderer = window.renderer().accelerated().build()
     .ok().expect("Failed to create accelerated renderer.");
     
-  //create a new sprite
-  let mut sprite = Sprite::new_from_file("sonic.bmp", &renderer);
+  //create a new player
+  let mut player = Player::new(Sprite::new_from_file("sonic.bmp", &renderer),
+    PlayerStatus::Stationary);
     
   //start drawing
   let mut drawer = renderer.drawer();
@@ -55,22 +59,39 @@ fn main() {
             running = false
           },
           Event::KeyDown {keycode: KeyCode::Left, .. } => {
-            sprite.mov_x(-1 * P_SPEED);
-          }
+            player.status = PlayerStatus::MovingLeft
+          },
           Event::KeyDown {keycode: KeyCode::Right, .. } => {
-            sprite.mov_x(P_SPEED);
-          }
+            player.status = PlayerStatus::MovingRight
+          },
+          Event::KeyUp {keycode: KeyCode::Left, .. } => {
+            player.status = PlayerStatus::Stationary
+          },
+          Event::KeyUp {keycode: KeyCode::Right, .. } => {
+            player.status = PlayerStatus::Stationary
+          },
           _ => {}
         }
       }
       
+      //move player
+      match player.status {
+        PlayerStatus::MovingLeft => {
+          player.sprite.mov_x(-1 * P_SPEED);
+        },
+        PlayerStatus::MovingRight => {
+          player.sprite.mov_x(P_SPEED);
+        },
+        _ => {}
+      }
+      
       //draw
       drawer.clear();
-      sprite.draw(&mut drawer);
+      player.draw(&mut drawer);
       drawer.present();
       
       //game logic
-      sprite.angle += 1.0;
+      player.sprite.angle += 1.0;
       
       //more timer stuff
       prev_time = get_ticks();
