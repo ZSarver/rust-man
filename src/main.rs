@@ -11,10 +11,13 @@ mod draw;
 mod player;
 
 use sprite::Sprite;
-use assets::P_SPEED;
 use player::Player;
 use player::PlayerStatus;
 use draw::Draw;
+
+//constants
+use assets::P_ACCEL;
+use assets::P_MAX_SPEED;
 
 fn main() {
   //initialize sdl
@@ -65,33 +68,22 @@ fn main() {
             player.status = PlayerStatus::MovingRight
           },
           Event::KeyUp {keycode: KeyCode::Left, .. } => {
-            player.status = PlayerStatus::Stationary
+            player.status = PlayerStatus::Decelerating
           },
           Event::KeyUp {keycode: KeyCode::Right, .. } => {
-            player.status = PlayerStatus::Stationary
+            player.status = PlayerStatus::Decelerating
           },
           _ => {}
         }
       }
       
-      //move player
-      match player.status {
-        PlayerStatus::MovingLeft => {
-          player.sprite.mov_x(-1 * P_SPEED);
-        },
-        PlayerStatus::MovingRight => {
-          player.sprite.mov_x(P_SPEED);
-        },
-        _ => {}
-      }
+      //move player      
+      player.update();
       
       //draw
       drawer.clear();
       player.draw(&mut drawer);
       drawer.present();
-      
-      //game logic
-      player.sprite.angle += 1.0;
       
       //more timer stuff
       prev_time = get_ticks();

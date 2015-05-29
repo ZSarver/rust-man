@@ -32,7 +32,7 @@ impl Sprite {
     let texture = r.create_texture_from_surface(&surf)
       .ok().expect("Failed to create texture");
       
-    Sprite{ tex: texture, rect: Some(Rect::new(100,100,100,100)), angle: 0.0 }
+    Sprite{ tex: texture, rect: Some(Rect::new(100,100,32,64)), angle: 0.0 }
   }
   
   pub fn mov_x(&mut self, x: i32) {
