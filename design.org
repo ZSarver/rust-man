@@ -1,0 +1,15 @@
+* Tile-based system
+** Dimensions
+A tile is 32 by 32. Rendered into an 800 by 600 window, that means 25 tiles
+horizontal by 18 vertical, with 24 pixels left over for a status bar. In
+contrast, the NES provides 32 by 30 tiles.
+
+To maintain the same tile ratio as the NES with 32 by 32 tiles, the game would
+need to run at 1024 by 960. If the game instead ran at 512 by 480, 16 by 16
+tiles would be needed. 640 by 480 giving 40 tiles by 30 tiles.
+** File Format - JSON
+JSON has excellent rust support and documentation (unlike, weirdly, TOML.)
+** Tile Struct
+A tile has a location in the level (in tile coordinates), a type enum entry
+(type encoding on-screen appearance,) and a passability vector, that is, a
+vector of four booleans, [Up, Down, Left, Right], encoding

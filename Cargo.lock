@@ -2,6 +2,7 @@
 name = "Rust-Man"
 version = "0.1.0"
 dependencies = [
+ "rustc-serialize 0.3.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "sdl2 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 

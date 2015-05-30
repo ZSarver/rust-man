@@ -1,4 +1,5 @@
 extern crate sdl2;
+extern crate rustc_serialize;
 
 use sdl2::rect::Rect;
 use sdl2::keycode::KeyCode;
@@ -9,6 +10,7 @@ mod sprite;
 mod assets;
 mod draw;
 mod player;
+mod tile;
 
 use sprite::Sprite;
 use player::Player;

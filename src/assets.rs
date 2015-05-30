@@ -1,5 +1,3 @@
-extern crate sdl2;
-
 ///Asset directory
 pub static ASSET_STR: &'static str = "assets";
 
