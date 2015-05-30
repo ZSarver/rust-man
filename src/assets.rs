@@ -1,7 +1,7 @@
 extern crate sdl2;
 
 ///Asset directory
-pub static ASSET_STR: &'static str = "/home/zachary/Projects/rust-man/assets";
+pub static ASSET_STR: &'static str = "assets";
 
 ///Player speed stuff
 pub const P_ACCEL: i32 = 1;
