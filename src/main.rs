@@ -11,6 +11,7 @@ mod assets;
 mod draw;
 mod player;
 mod tile;
+mod map;
 
 use sprite::Sprite;
 use player::Player;

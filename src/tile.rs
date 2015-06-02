@@ -17,3 +17,10 @@ enum TileEnum {
   Floor,
   Prisoner,
 }
+
+impl Tile {
+  pub fn debug_new_tile(x: i32, y: i32) -> Tile {
+    return Tile{ tile_x: x, tile_y: y, tile_type: TileEnum::Floor, pass_up: false,
+      pass_right: false, pass_left: false, pass_down: false};
+  }
+}
