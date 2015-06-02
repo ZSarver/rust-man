@@ -28,7 +28,7 @@ fn main() {
     .ok().expect("Failed to initialize SDL.");
   
   //create a window
-  let window = sdl_context.window("Rust-Man", 800, 600)
+  let window = sdl_context.window("Rust-Man", 640, 480)
     .position_centered()
     .build()
     .ok().expect("Failed to create window.");
@@ -85,7 +85,7 @@ fn main() {
       
       //draw
       drawer.clear();
-      player.draw(&mut drawer);
+      player.draw(&mut drawer, &None);
       drawer.present();
       
       //more timer stuff

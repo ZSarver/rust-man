@@ -8,3 +8,6 @@ pub const P_MAX_SPEED: i32 = 10;
 ///Gravity
 pub const GRAVITY: i32 = 4;
 pub const TERM_VEL: i32 = 10;
+
+///Tile stuff
+pub const TILE_SIZE: i32 = 16;
