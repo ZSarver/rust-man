@@ -3,14 +3,30 @@ use std::vec::Vec;
 use sdl2::render::Renderer;
 
 use tile::Tile;
+use tile::SaveTile;
 
 ///Type synonym for vectors of tiles, which are maps
 pub struct TileMap(Vec<Tile>);
+
+///Simplified TileMap for saving to disk
+#[derive(RustcDecodable, RustcEncodable)]
+pub struct SaveTileMap(Vec<SaveTile>);
 
 impl TileMap {
   pub fn unwrap(&self) -> &Vec<Tile> {
     let TileMap(ref result) = *self;
     result
+  }
+}
+
+impl SaveTileMap {
+  pub fn toTileMap(&self, r: &Renderer) -> TileMap {
+    let SaveTileMap(ref innards) = *self;
+    let mut tiles = Vec::new();
+    for t in innards {
+      tiles.push(t.toTile(r));
+    }
+    TileMap(tiles)
   }
 }
 

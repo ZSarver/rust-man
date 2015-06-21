@@ -13,7 +13,7 @@ use assets::ASSET_STR;
 ///Since various SDL types aren't RustcDecodable-friendly, it's necessary to have an simpler type
 ///for purposes of saving to disc.
 #[derive(RustcDecodable, RustcEncodable)]
-struct SaveTile {
+pub struct SaveTile {
   pub tile_x: i32,
   pub tile_y: i32,
   tile_type: TileEnum,
@@ -24,7 +24,7 @@ struct SaveTile {
 }
 
 impl SaveTile {
-  fn toTile(&self, r: &Renderer) -> Tile {
+  pub fn toTile(&self, r: &Renderer) -> Tile {
     let asset_path = Path::new(ASSET_STR);
     let mut full_pathbuf = asset_path.join("");
     match self.tile_type{
