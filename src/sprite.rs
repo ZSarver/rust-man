@@ -6,12 +6,15 @@ use sdl2::surface::Surface;
 use sdl2::rect::Rect;
 
 use assets;
+use physics::Phobject;
+use physics::zero;
 
 ///A Sprite is a texture with an optional Rect and an angle
 pub struct Sprite {
   pub tex: Texture,
   pub rect: Option<Rect>,
   pub angle: f64,
+  phys: Option<Phobject>,
   }
 
 impl Sprite {
@@ -29,8 +32,8 @@ impl Sprite {
     //create a texture from the surface
     let texture = r.create_texture_from_surface(&surf)
       .ok().expect("Failed to create texture");
-      
-    Sprite{ tex: texture, rect: Some(Rect::new(100,100,32,64)), angle: 0.0 }
+        
+    Sprite{ tex: texture, rect: Some(Rect::new(100,100,32,64)), angle: 0.0, phys: None }
   }
   
   pub fn mov_x(&mut self, x: i32) {
@@ -54,5 +57,23 @@ impl Sprite {
   pub fn mov(&mut self, x: i32, y: i32) {
     self.mov_x(x);
     self.mov_y(y);
+  }
+  
+  pub fn update(&mut self, dt: f64)
+  {
+    match self.phys.as_mut() {
+      Some(p) => {
+        p.update(dt);
+        match self.rect.as_mut() {
+          Some(r) => {
+            r.x = p.position.x as i32;
+            r.y = p.position.y as i32;
+          },
+          None => {},
+        }
+      },
+      None => {},
+    }
+    
   }
 }

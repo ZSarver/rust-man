@@ -6,8 +6,8 @@ use sprite::Sprite;
 ///2-vectors
 #[derive(Clone)]
 pub struct Vec2 {
-  x: f64,
-  y: f64,
+  pub x: f64,
+  pub y: f64,
 }
 
 impl Vec2 {
@@ -33,9 +33,13 @@ impl Mul<f64> for Vec2 {
   }
 }
 
+pub fn zero() -> Vec2 {
+  Vec2 { x: 0.0, y: 0.0 }
+}
+
 ///Physics object
 pub struct Phobject {
-  position: Vec2,
+  pub position: Vec2,
   velocity: Vec2,
   accel: Vec2,
   mass: f64,
@@ -51,6 +55,7 @@ impl Phobject {
   ///
   ///dt is the time in milliseconds
   pub fn update(&mut self, dt: f64) {
+    self.position = self.position.clone() + self.velocity.clone();
     self.velocity.x = self.velocity.x + (dt/1000.0) * self.accel.x;
     self.velocity.y = self.velocity.y + (dt/1000.0) * self.accel.y;
     
