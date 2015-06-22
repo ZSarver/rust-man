@@ -12,6 +12,7 @@ mod draw;
 mod player;
 mod tile;
 mod map;
+mod physics;
 
 use sprite::Sprite;
 use player::Player;
