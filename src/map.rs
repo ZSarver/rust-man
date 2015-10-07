@@ -20,11 +20,11 @@ impl TileMap {
 }
 
 impl SaveTileMap {
-  pub fn toTileMap(&self, r: &Renderer) -> TileMap {
+  pub fn to_TileMap(&self, r: &Renderer) -> TileMap {
     let SaveTileMap(ref innards) = *self;
     let mut tiles = Vec::new();
     for t in innards {
-      tiles.push(t.toTile(r));
+      tiles.push(t.to_Tile(r));
     }
     TileMap(tiles)
   }

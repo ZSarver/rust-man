@@ -1,7 +1,6 @@
 extern crate sdl2;
 extern crate rustc_serialize;
 
-use sdl2::rect::Rect;
 use sdl2::keycode::KeyCode;
 use sdl2::event::Event;
 use sdl2::timer::get_ticks;
@@ -18,10 +17,6 @@ use sprite::Sprite;
 use player::Player;
 use player::PlayerStatus;
 use draw::Draw;
-
-//constants
-use assets::P_ACCEL;
-use assets::P_MAX_SPEED;
 
 fn main() {
   //initialize sdl
@@ -94,5 +89,5 @@ fn main() {
     }
   }
   
-  println!("Hello, world!");
+  println!("Goodbye, world!");
 }

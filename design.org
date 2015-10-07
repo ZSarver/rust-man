@@ -12,4 +12,7 @@ JSON has excellent rust support and documentation (unlike, weirdly, TOML.)
 ** Tile Struct
 A tile has a location in the level (in tile coordinates), a type enum entry
 (type encoding on-screen appearance,) and a passability vector, that is, a
-vector of four booleans, [Up, Down, Left, Right], encoding
+vector of four booleans, [Up, Down, Left, Right], encoding through what
+directions a tile may be passed. Ie if pass_up is true then a character moving
+upwards may pass through the tile. However, if pass_right is false, a character
+moving right may not pass through the tile.

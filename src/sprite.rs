@@ -7,7 +7,6 @@ use sdl2::rect::Rect;
 
 use assets;
 use physics::Phobject;
-use physics::zero;
 
 ///A Sprite is a texture with an optional Rect and an angle
 pub struct Sprite {

@@ -24,7 +24,7 @@ pub struct SaveTile {
 }
 
 impl SaveTile {
-  pub fn toTile(&self, r: &Renderer) -> Tile {
+  pub fn to_Tile(&self, r: &Renderer) -> Tile {
     let asset_path = Path::new(ASSET_STR);
     let mut full_pathbuf = asset_path.join("");
     match self.tile_type{
@@ -97,5 +97,15 @@ impl Tile {
       pass_right: false,
       pass_left: false,
       pass_down: false};
+  }
+  pub fn to_SaveTile(&self) -> SaveTile {
+    return SaveTile{ tile_x: self.tile_x,
+                     tile_y: self.tile_y,
+                     tile_type: self.tile_type.clone(),
+                     pass_up: self.pass_up,
+                     pass_down: self.pass_down,
+                     pass_left: self.pass_left,
+                     pass_right: self.pass_right,
+    }
   }
 }
